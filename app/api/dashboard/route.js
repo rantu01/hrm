@@ -1,22 +1,22 @@
-const express = require('express');
-const auth = require('../middleware/auth');
-const Employee = require('../models/Employee');
-const Branch = require('../models/Branch');
-const Department = require('../models/Department');
-const Attendance = require('../models/Attendance');
-const Leave = require('../models/Leave');
-const Payroll = require('../models/Payroll');
-
-const router = express.Router();
+import connectDB from '@/lib/db';
+import Employee from '@/lib/models/Employee';
+import Branch from '@/lib/models/Branch';
+import Department from '@/lib/models/Department';
+import Attendance from '@/lib/models/Attendance';
+import Leave from '@/lib/models/Leave';
+import Payroll from '@/lib/models/Payroll';
+import { requireAuth, handleApiError } from '@/lib/auth';
 
 // All routes require authentication
-router.use(auth);
 
 // @route   GET /api/dashboard
 // @desc    Get dashboard stats and data
 // @access  Private
-router.get('/', async (req, res) => {
+export async function GET(request) {
   try {
+    await requireAuth(request);
+    await connectDB();
+
     // Employee stats
     const totalEmployees = await Employee.countDocuments();
     const activeEmployees = await Employee.countDocuments({ status: 'active' });
@@ -77,41 +77,43 @@ router.get('/', async (req, res) => {
       .sort({ startDate: 1 })
       .limit(5);
 
-    res.status(200).json({
-      stats: {
-        employees: {
-          total: totalEmployees,
-          active: activeEmployees,
-          inactive: inactiveEmployees,
-          terminated: terminatedEmployees,
+    return Response.json(
+      {
+        stats: {
+          employees: {
+            total: totalEmployees,
+            active: activeEmployees,
+            inactive: inactiveEmployees,
+            terminated: terminatedEmployees,
+          },
+          branches: {
+            total: totalBranches,
+          },
+          departments: {
+            total: totalDepartments,
+          },
+          attendance: {
+            today: todayAttendance,
+            present: presentToday,
+            absent: absentToday,
+            late: lateToday,
+          },
+          leaves: {
+            pending: pendingLeaves,
+            approved: approvedLeaves,
+          },
+          payroll: {
+            processedThisMonth: processedPayrolls,
+          },
         },
-        branches: {
-          total: totalBranches,
-        },
-        departments: {
-          total: totalDepartments,
-        },
-        attendance: {
-          today: todayAttendance,
-          present: presentToday,
-          absent: absentToday,
-          late: lateToday,
-        },
-        leaves: {
-          pending: pendingLeaves,
-          approved: approvedLeaves,
-        },
-        payroll: {
-          processedThisMonth: processedPayrolls,
-        },
+        recentEmployees,
+        upcomingLeaves,
       },
-      recentEmployees,
-      upcomingLeaves,
-    });
+      { status: 200 }
+    );
   } catch (error) {
+    if (error?.digest === 'NEXT_PRERENDER_INTERRUPTED') throw error;
     console.error('Dashboard error:', error);
-    res.status(500).json({ message: 'Server error fetching dashboard data' });
+    return handleApiError(error, 'Server error fetching dashboard data');
   }
-});
-
-module.exports = router;
+}
