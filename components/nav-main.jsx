@@ -135,13 +135,13 @@ export function NavMain({ items = [], searchQuery = '' }) {
                                             href={child.href || '#'}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-2"
+                                            className="flex w-full flex-1 min-w-0 items-center gap-2"
                                         >
-                                            <span>{child.title}</span>
+                                            <span className="truncate">{child.title}</span>
                                         </a>
                                     ) : (
-                                        <Link href={child.href || '#'} className="flex items-center gap-2">
-                                            <span>{child.title}</span>
+                                        <Link href={child.href || '#'} className="flex w-full flex-1 min-w-0 items-center gap-2">
+                                            <span className="truncate">{child.title}</span>
                                         </Link>
                                     )}
                                 </SidebarMenuSubButton>
@@ -225,15 +225,15 @@ export function NavMain({ items = [], searchQuery = '' }) {
                                                     href={item.href || '#'}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center gap-2"
+                                                    className="flex w-full flex-1 min-w-0 items-center gap-2"
                                                 >
-                                                    {item.icon && <item.icon className="h-4 w-4" />}
-                                                    <span>{item.title}</span>
+                                                    {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
+                                                    <span className="truncate">{item.title}</span>
                                                 </a>
                                             ) : (
-                                                <Link href={item.href || '#'} className="flex items-center gap-2">
-                                                    {item.icon && <item.icon className="h-4 w-4" />}
-                                                    <span>{item.title}</span>
+                                                <Link href={item.href || '#'} className="flex w-full flex-1 min-w-0 items-center gap-2">
+                                                    {item.icon && <item.icon className="h-4 w-4 shrink-0" />}
+                                                    <span className="truncate">{item.title}</span>
                                                 </Link>
                                             )}
                                         </SidebarMenuButton>

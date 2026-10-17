@@ -17,20 +17,39 @@ export default function LoginPage() {
     const [rememberMe, setRememberMe] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setError('');
 
-        // TODO: Implement actual authentication logic
-        // For now, simulate a login attempt
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        console.log('Login attempt:', { email, password, rememberMe });
-        setIsLoading(false);
-
-        // Redirect to dashboard on success
-        router.push('/dashboard');
+        try {
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                const message =
+                    data.message ||
+                    (Array.isArray(data.errors)
+                        ? data.errors.map((er) => er.msg || er.message).join(', ')
+                        : null) ||
+                    'Login failed. Please try again.';
+                setError(message);
+                return;
+            }
+            // Auth cookie is set httpOnly by the server; go to the app.
+            router.push('/dashboard');
+            router.refresh();
+        } catch {
+            setError('Unable to reach the server. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -40,6 +59,11 @@ export default function LoginPage() {
             icon={<LogIn className="h-5 w-5 text-blue-500" />}
         >
             <form onSubmit={handleSubmit} className="space-y-5">
+                {error && (
+                    <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600 dark:border-red-900 dark:bg-red-950 dark:text-red-400">
+                        {error}
+                    </div>
+                )}
                 {/* Email Field */}
                 <div className="space-y-2">
                     <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">

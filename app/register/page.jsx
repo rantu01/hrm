@@ -21,6 +21,7 @@ export default function RegisterPage() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [passwordStrength, setPasswordStrength] = useState(0);
+    const [error, setError] = useState('');
 
     const calculatePasswordStrength = (pwd) => {
         let strength = 0;
@@ -49,25 +50,44 @@ export default function RegisterPage() {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            alert('Passwords do not match');
+            setError('Passwords do not match');
             return;
         }
 
         if (!agreeTerms) {
-            alert('Please agree to the terms and conditions');
+            setError('Please agree to the terms and conditions');
             return;
         }
 
         setIsLoading(true);
+        setError('');
 
-        // TODO: Implement actual registration logic
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        console.log('Register attempt:', { name, email, password });
-        setIsLoading(false);
-
-        // Redirect to login on success
-        router.push('/login');
+        try {
+            const res = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ name, email, password }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                const message =
+                    data.message ||
+                    (Array.isArray(data.errors)
+                        ? data.errors.map((er) => er.msg || er.message).join(', ')
+                        : null) ||
+                    'Registration failed. Please try again.';
+                setError(message);
+                return;
+            }
+            // Register sets the auth cookie; go straight to the app.
+            router.push('/dashboard');
+            router.refresh();
+        } catch {
+            setError('Unable to reach the server. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -77,6 +97,11 @@ export default function RegisterPage() {
             icon={<UserPlus className="h-5 w-5 text-blue-500" />}
         >
             <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                    <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600 dark:border-red-900 dark:bg-red-950 dark:text-red-400">
+                        {error}
+                    </div>
+                )}
                 {/* Name Field */}
                 <div className="space-y-2">
                     <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">

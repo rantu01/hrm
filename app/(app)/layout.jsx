@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { AppShell } from '@/components/app-shell';
 import { AppSidebar } from '@/components/app-sidebar';
 import { AppContent } from '@/components/app-content';
@@ -10,10 +11,16 @@ export const metadata = {
 export default function AppLayout({ children }) {
   return (
     <AppShell variant="sidebar">
-      <AppSidebar />
+      <Suspense fallback={null}>
+        <AppSidebar />
+      </Suspense>
       <AppContent variant="sidebar" className="bg-[#F8FAFE] dark:bg-black">
-        <AppSidebarHeader />
-        {children}
+        <Suspense fallback={null}>
+          <AppSidebarHeader />
+        </Suspense>
+        <Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Loading...</div>}>
+          {children}
+        </Suspense>
       </AppContent>
     </AppShell>
   );

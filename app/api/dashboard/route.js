@@ -19,9 +19,9 @@ export async function GET(request) {
 
     // Employee stats
     const totalEmployees = await Employee.countDocuments();
-    const activeEmployees = await Employee.countDocuments({ status: 'active' });
-    const inactiveEmployees = await Employee.countDocuments({ status: 'inactive' });
-    const terminatedEmployees = await Employee.countDocuments({ status: 'terminated' });
+    const activeEmployees = await Employee.countDocuments({ employee_status: 'active' });
+    const inactiveEmployees = await Employee.countDocuments({ employee_status: 'inactive' });
+    const terminatedEmployees = await Employee.countDocuments({ employee_status: 'terminated' });
 
     // Branch & Department stats
     const totalBranches = await Branch.countDocuments();
@@ -73,7 +73,7 @@ export async function GET(request) {
       status: 'approved',
       startDate: { $gte: new Date() },
     })
-      .populate('employee', 'name email designation')
+      .populate('employee', 'name email')
       .sort({ startDate: 1 })
       .limit(5);
 

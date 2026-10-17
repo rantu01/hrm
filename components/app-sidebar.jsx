@@ -360,6 +360,9 @@ export function SidebarMenuButton({ asChild = false, isActive = false, variant =
                 'data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground',
                 'group-data-[collapsible=icon]:size-8 group-data-[collapsible=icon]:p-2',
                 '[&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+                // When rendering asChild (span wrapping a Link), make the inner link
+                // fill the entire button so clicking anywhere navigates.
+                asChild && '[&>a]:flex [&>a]:w-full [&>a]:flex-1 [&>a]:min-w-0 [&>a]:items-center [&>a]:gap-2',
                 sidebarMenuButtonVariants[variant] || sidebarMenuButtonVariants.default,
                 size === 'sm' && 'h-7 text-xs',
                 size === 'default' && 'h-8 text-sm',
@@ -428,8 +431,11 @@ export function SidebarMenuSubButton({ asChild = false, size = 'md', isActive = 
             data-size={size}
             data-active={isActive}
             className={cn(
-                'text-sidebar-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 hover:bg-sidebar-accent hover:text-primary active:bg-sidebar-accent active:text-primary focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&>svg]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+                'text-sidebar-foreground flex h-7 min-w-0 w-full -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 hover:bg-sidebar-accent hover:text-primary active:bg-sidebar-accent active:text-primary focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&>svg]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
                 'data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:font-semibold',
+                // When rendering asChild (span wrapping a Link), make the inner link
+                // fill the entire row so clicking anywhere navigates.
+                asChild && '[&>a]:flex [&>a]:w-full [&>a]:flex-1 [&>a]:min-w-0 [&>a]:items-center [&>a]:gap-2',
                 size === 'sm' && 'text-xs',
                 size === 'md' && 'text-sm',
                 'group-data-[collapsible=icon]:hidden',
@@ -472,23 +478,26 @@ const mainNavItems = [
             {
                 title: 'Performance',
                 children: [
+                    { title: 'Indicator Categories', href: '/hr/performance/indicator-categories' },
                     { title: 'Indicators', href: '/hr/performance/indicators' },
                     { title: 'Goal Types', href: '/hr/performance/goal-types' },
                     { title: 'Employee Goals', href: '/hr/performance/employee-goals' },
+                    { title: 'Review Cycles', href: '/hr/performance/review-cycles' },
+                    { title: 'Employee Reviews', href: '/hr/performance/employee-reviews' },
                 ],
             },
             { title: 'Holidays', href: '/hr/holidays' },
             { title: 'Announcements', href: '/hr/announcements' },
         ],
     },
-    {
-        title: 'Staff',
-        icon: Users,
-        children: [
-            { title: 'Users', href: '/staff/users' },
-            { title: 'Roles', href: '/staff/roles' },
-        ],
-    },
+        {
+            title: 'Staff',
+            icon: Users,
+            children: [
+                { title: 'Users', href: '/staff/users' },
+                { title: 'Roles', href: '/staff/roles' },
+            ],
+        },
     {
         title: 'Recruitment',
         icon: Users,
