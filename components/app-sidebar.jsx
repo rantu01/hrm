@@ -24,7 +24,7 @@ import {
     BarChart,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { AppLogo } from './app-logo';
+import { AppIconMark, AppLogo } from './app-logo';
 import { NavMain } from './nav-main';
 import { NavUser } from './nav-user';
 
@@ -576,10 +576,8 @@ export function AppSidebar({ variant = 'sidebar', collapsible = 'offcanvas' }) {
                         <div className="group-data-[collapsible=icon]:hidden flex items-center">
                             <AppLogo />
                         </div>
-                        <div className="h-8 w-8 hidden group-data-[collapsible=icon]:block">
-                            <div className="flex h-8 w-8 items-center justify-center rounded bg-primary text-sm font-bold text-white shadow-sm">
-                                W
-                            </div>
+                        <div className="hidden h-8 w-8 group-data-[collapsible=icon]:block">
+                            <AppIconMark className="h-8 w-8" size={32} />
                         </div>
                     </Link>
                 </div>
