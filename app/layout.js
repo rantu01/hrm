@@ -7,21 +7,13 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "HRM SaaS - HR & Payroll Management",
+  title: "LAMHA Tech - HR & Payroll Management",
   description: "Streamline employee management, attendance tracking, payroll, performance, and daily operations – all in one powerful platform.",
+  applicationName: "LAMHA Tech",
   icons: {
-    icon: [
-      {
-        url: '/Icon/White%20Icon%404x.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/Icon/Asset%202%404x.png',
-        media: '(prefers-color-scheme: light)',
-      },
-    ],
-    shortcut: '/Icon/Asset%202%404x.png',
-    apple: '/Icon/Asset%202%404x.png',
+    icon: "/Icon/icon.png",
+    shortcut: "/Icon/icon.png",
+    apple: "/Icon/icon.png",
   },
 };
 

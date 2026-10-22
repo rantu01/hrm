@@ -3,35 +3,46 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-export function AppIconMark({ className, size = 32 }) {
+const LOGO_WIDTH = 320;
+const LOGO_HEIGHT = 103;
+
+export function AppIconMark({ className, size = 32, priority = false }) {
     return (
         <Image
-            src="/Icon/Asset%202%404x.png"
-            alt="HRM logo icon"
+            src="/Icon/icon.png"
+            alt="LAMHA Tech"
             width={size}
             height={size}
-            priority
+            priority={priority}
             className={cn('object-contain', className)}
         />
     );
 }
 
-export function AppLogo({ className, compact = false }) {
-    return (
-        <div className={cn('flex items-center', className)}>
-            <AppIconMark size={compact ? 28 : 32} className={compact ? 'h-7 w-7' : 'h-8 w-8'} />
+export function AppLogo({ className, imageClassName, compact = false, priority = false }) {
+    if (compact) {
+        return <AppIconMark size={32} priority={priority} className={cn('h-8 w-8', className)} />;
+    }
 
-            {!compact && (
-                <Image
-                    src="/Icon/Full%20Black%404x.png"
-                    alt="HRM SaaS logo"
-                    width={128}
-                    height={32}
-                    priority
-                    className="ml-2 h-7 w-auto object-contain dark:invert"
-                />
-            )}
-        </div>
+    return (
+        <span className={cn('inline-flex items-center', className)}>
+            <Image
+                src="/Icon/Asset%202%404x.png"
+                alt="LAMHA Tech"
+                width={LOGO_WIDTH}
+                height={LOGO_HEIGHT}
+                priority={priority}
+                className={cn('h-7 w-auto object-contain dark:hidden', imageClassName)}
+            />
+            <Image
+                src="/Icon/Full%20White%404x.png"
+                alt="LAMHA Tech"
+                width={LOGO_WIDTH}
+                height={LOGO_HEIGHT}
+                priority={priority}
+                className={cn('hidden h-7 w-auto object-contain dark:block', imageClassName)}
+            />
+        </span>
     );
 }
 

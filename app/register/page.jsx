@@ -93,7 +93,7 @@ export default function RegisterPage() {
     return (
         <AuthLayout
             title="Create Account"
-            description="Start your journey with HRM SaaS today"
+            description="Start your journey with LAMHA Tech today"
             icon={<UserPlus className="h-5 w-5 text-blue-500" />}
         >
             <form onSubmit={handleSubmit} className="space-y-4">

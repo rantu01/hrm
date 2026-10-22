@@ -5,7 +5,7 @@ import { AppContent } from '@/components/app-content';
 import { AppSidebarHeader } from '@/components/app-sidebar-header';
 
 export const metadata = {
-  title: 'Dashboard - HRM SaaS',
+  title: 'Dashboard - LAMHA Tech',
 };
 
 export default function AppLayout({ children }) {

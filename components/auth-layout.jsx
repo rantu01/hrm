@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CreditCard, Users, ShieldCheck, Link as LinkIcon, Briefcase, Calendar, UserCheck, FileText, Award, Clock } from 'lucide-react';
+import { Users, ShieldCheck, Link as LinkIcon, Briefcase, Calendar, UserCheck, FileText, Award, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { AppLogo } from '@/components/app-logo';
 
 const PRIMARY_COLOR = '#3b82f6';
 
@@ -84,12 +85,7 @@ export function AuthLayout({ children, title, description, icon, status, statusT
 
                 {/* Header - Logo */}
                 <div className="flex justify-center">
-                    <div className="inline-block">
-                        <div className="flex items-center justify-center space-x-2">
-                            <CreditCard className="h-9 w-9 sm:h-11 sm:w-11" style={{ color: PRIMARY_COLOR }} />
-                            <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">HRM</span>
-                        </div>
-                    </div>
+                    <AppLogo imageClassName="h-9 sm:h-10" priority />
                 </div>
 
                 {/* Main Form Content */}
@@ -132,7 +128,7 @@ export function AuthLayout({ children, title, description, icon, status, statusT
 
                 {/* Footer - Copyright Info */}
                 <div className="text-gray-400 dark:text-gray-500 text-xs sm:text-sm text-center">
-                    &copy; {new Date().getFullYear()} HRM SaaS. All rights reserved.
+                    &copy; {new Date().getFullYear()} LAMHA Tech LLC. All rights reserved.
                 </div>
             </div>
 
@@ -271,7 +267,7 @@ function LoginPromo() {
         <>
             <h2 className="text-xl lg:text-2xl xl:text-[40px] font-bold text-[#1E293B] dark:text-white mb-1.5 lg:mb-3 xl:mb-5 leading-tight">
                 Manage Your Workforce<br />
-                Smarter with <span style={{ color: PRIMARY_COLOR }}>HRM SaaS</span>
+                Smarter with <span style={{ color: PRIMARY_COLOR }}>LAMHA Tech</span>
             </h2>
             <p className="text-[#475569] dark:text-gray-300 text-xs lg:text-sm xl:text-lg mb-3 lg:mb-5 xl:mb-8 max-w-lg leading-normal xl:leading-relaxed">
                 Streamline employee management, attendance tracking, payroll, performance, and daily operations – all in one powerful platform.

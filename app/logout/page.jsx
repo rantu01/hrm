@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { AppLogo } from '@/components/app-logo';
 
 export default function LogoutPage() {
   const router = useRouter();
@@ -20,7 +21,8 @@ export default function LogoutPage() {
   }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6">
+      <AppLogo imageClassName="h-9" />
       <p className="text-sm text-muted-foreground">Signing out...</p>
     </div>
   );
