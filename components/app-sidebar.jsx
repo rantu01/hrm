@@ -2,11 +2,11 @@
 
 import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
     LayoutGrid,
     Briefcase,
     Users,
+    UserPlus,
     CalendarDays,
     Clock,
     DollarSign,
@@ -22,6 +22,8 @@ import {
     Palette,
     CreditCard,
     BarChart,
+    Menu,
+    X,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AppIconMark, AppLogo } from './app-logo';
@@ -33,6 +35,7 @@ const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = '18rem';
 const SIDEBAR_WIDTH_MOBILE = '18rem';
 const SIDEBAR_WIDTH_ICON = '3rem';
+const MOBILE_BREAKPOINT = 1024;
 
 const SidebarContext = createContext(null);
 
@@ -70,11 +73,52 @@ export function SidebarProvider({ defaultOpen = true, open: openProp, onOpenChan
     }, [isMobile, setOpen, setOpenMobile]);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => {
+            const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+            setIsMobile(mobile);
+
+            if (!mobile) {
+                setOpenMobile(false);
+            }
+        };
+
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    // Close the mobile drawer when the user navigates with the browser controls.
+    useEffect(() => {
+        const handlePopState = () => setOpenMobile(false);
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, []);
+
+    // Prevent the page behind the mobile drawer from scrolling while it is open.
+    useEffect(() => {
+        if (!isMobile || !openMobile) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isMobile, openMobile]);
+
+    useEffect(() => {
+        if (!openMobile) return undefined;
+
+        const handleEscape = (event) => {
+            if (event.key === 'Escape') {
+                setOpenMobile(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleEscape);
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, [openMobile]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -137,17 +181,42 @@ export function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'off
     if (isMobile) {
         return (
             <>
-                {openMobile && (
-                    <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setOpenMobile(false)} />
-                )}
                 <div
                     className={cn(
-                        'bg-sidebar text-sidebar-foreground fixed inset-y-0 left-0 z-50 flex w-(--sidebar-width) flex-column transition-transform duration-200',
-                        openMobile ? 'translate-x-0' : '-translate-x-full'
+                        'fixed inset-0 z-40 bg-brand-charcoal/50 transition-opacity duration-300 ease-in-out motion-reduce:transition-none',
+                        openMobile ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    )}
+                    onClick={() => setOpenMobile(false)}
+                    aria-hidden="true"
+                />
+                <div
+                    id="app-sidebar-mobile"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Navigation menu"
+                    aria-hidden={!openMobile}
+                    inert={!openMobile}
+                    className={cn(
+                        'bg-sidebar text-sidebar-foreground fixed inset-y-0 left-0 z-50 flex w-(--sidebar-width) max-w-[85vw] flex-col shadow-xl transition-transform duration-300 ease-in-out will-change-transform motion-reduce:transition-none',
+                        openMobile ? 'translate-x-0' : '-translate-x-full pointer-events-none'
                     )}
                     style={{ '--sidebar-width': SIDEBAR_WIDTH_MOBILE }}
+                    onClick={(event) => {
+                        // Close the drawer as soon as a navigation link is activated.
+                        if (event.target.closest?.('a[href]')) {
+                            setOpenMobile(false);
+                        }
+                    }}
                 >
-                    <div className="flex h-full w-full flex-col">{children}</div>
+                    <button
+                        type="button"
+                        onClick={() => setOpenMobile(false)}
+                        aria-label="Close navigation menu"
+                        className="absolute right-2 top-2 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+                    >
+                        <X className="h-5 w-5" />
+                    </button>
+                    <div className="flex h-full w-full flex-col overflow-hidden">{children}</div>
                 </div>
             </>
         );
@@ -155,7 +224,7 @@ export function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'off
 
     return (
         <div
-            className="group peer text-sidebar-foreground hidden md:block print:hidden"
+            className="group peer text-sidebar-foreground hidden lg:block print:hidden"
             data-state={state}
             data-collapsible={state === 'collapsed' ? collapsible : ''}
             data-variant={variant}
@@ -174,7 +243,7 @@ export function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'off
             />
             <div
                 className={cn(
-                    'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+                    'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear lg:flex',
                     side === 'left'
                         ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
                         : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
@@ -195,20 +264,25 @@ export function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'off
     );
 }
 
-export function SidebarTrigger({ className, onClick }) {
-    const { toggleSidebar } = useSidebar();
+export function SidebarTrigger({ className, onClick, children, ...props }) {
+    const { toggleSidebar, isMobile, openMobile, open } = useSidebar();
 
     return (
         <button
+            type="button"
             data-sidebar="trigger"
             data-slot="sidebar-trigger"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobile ? openMobile : open}
+            aria-controls={isMobile ? 'app-sidebar-mobile' : undefined}
             className={cn('flex h-7 w-7 items-center justify-center rounded-md hover:bg-accent cursor-pointer', className)}
             onClick={(event) => {
                 onClick?.(event);
                 toggleSidebar();
             }}
+            {...props}
         >
-            <LayoutGrid className="h-4 w-4" />
+            {children ?? <Menu className="h-4 w-4" />}
             <span className="sr-only">Toggle Sidebar</span>
         </button>
     );
@@ -500,11 +574,25 @@ const mainNavItems = [
         },
     {
         title: 'Recruitment',
-        icon: Users,
+        icon: UserPlus,
         children: [
+            { title: 'Overview', href: '/recruitment' },
             { title: 'Job Postings', href: '/recruitment/job-postings' },
             { title: 'Candidates', href: '/recruitment/candidates' },
             { title: 'Interviews', href: '/recruitment/interviews' },
+            { title: 'Interview Feedback', href: '/recruitment/interview-feedback' },
+            { title: 'Offers', href: '/recruitment/offers' },
+            { title: 'Candidate Onboarding', href: '/recruitment/candidate-onboarding' },
+            { title: 'Candidate Assessments', href: '/recruitment/candidate-assessments' },
+            { title: 'Onboarding Checklists', href: '/recruitment/onboarding-checklists' },
+            { title: 'Job Categories', href: '/recruitment/job-categories' },
+            { title: 'Job Types', href: '/recruitment/job-types' },
+            { title: 'Job Locations', href: '/recruitment/job-locations' },
+            { title: 'Candidate Sources', href: '/recruitment/candidate-sources' },
+            { title: 'Interview Types', href: '/recruitment/interview-types' },
+            { title: 'Interview Rounds', href: '/recruitment/interview-rounds' },
+            { title: 'Custom Questions', href: '/recruitment/custom-questions' },
+            { title: 'Offer Templates', href: '/recruitment/offer-templates' },
         ],
     },
     {

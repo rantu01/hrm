@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils"
 
 const Table = React.forwardRef(
   ({ className, ...props }, ref) => (
-    <div className="relative w-full overflow-auto dark:bg-gray-900">
+    <div className="relative w-full overflow-auto dark:bg-brand-charcoal">
       <table
         ref={ref}
-        className={cn("w-full caption-bottom text-sm text-foreground dark:bg-gray-900", className)}
+        className={cn("w-full caption-bottom text-sm text-foreground dark:bg-brand-charcoal", className)}
         {...props}
       />
     </div>
@@ -53,7 +53,7 @@ const TableRow = React.forwardRef(
     <tr
       ref={ref}
       className={cn(
-        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted text-foreground dark:border-gray-700 dark:bg-gray-900",
+        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted text-foreground border-brand-charcoal/20 dark:bg-brand-charcoal",
         className
       )}
       {...props}
@@ -67,7 +67,7 @@ const TableHead = React.forwardRef(
     <th
       ref={ref}
       className={cn(
-        "h-12 px-4 ltr:text-left rtl:text-right align-middle font-medium text-muted-foreground dark:text-gray-300 [&:has([role=checkbox])]:pr-0 dark:bg-gray-900",
+        "h-12 px-4 ltr:text-left rtl:text-right align-middle font-medium text-muted-foreground dark:text-brand-white [&:has([role=checkbox])]:pr-0 dark:bg-brand-charcoal",
         className
       )}
       {...props}

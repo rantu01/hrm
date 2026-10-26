@@ -14,7 +14,7 @@ export function NavFooter({ items, className, ...props }) {
                         <SidebarMenuItem key={item.title}>
                             <SidebarMenuButton
                                 asChild
-                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                                className="text-brand-charcoal hover:text-brand-charcoal dark:text-brand-white dark:hover:text-brand-charcoal"
                             >
                                 <a
                                     href={item.href}

@@ -115,7 +115,7 @@ export default function StaffUsersPage() {
                 {row?.avatar ? (
                   <img src={row.avatar} alt="" className="h-8 w-8 rounded-full object-cover" />
                 ) : (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-200 text-xs font-medium dark:bg-neutral-700">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-white text-xs font-medium dark:bg-brand-charcoal">
                     {String(value || 'U').split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)}
                   </div>
                 )}
@@ -165,7 +165,7 @@ export default function StaffUsersPage() {
       />
 
       {resetRow && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-sm rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">Reset Password</h2>
             <p className="mt-1 text-sm text-muted-foreground">

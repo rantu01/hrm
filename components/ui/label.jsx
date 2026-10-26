@@ -21,7 +21,7 @@ function Label({
       {...props}
     >
       {children}
-      {required && <span className="text-red-500 ml-1">*</span>}
+      {required && <span className="text-brand-red ml-1">*</span>}
     </LabelPrimitive.Root>
   )
 }

@@ -341,7 +341,7 @@ export default function HolidaysPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{editing ? 'Edit' : 'Create'} Holiday</h2>
             {error && <div className="mt-3 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</div>}
@@ -408,7 +408,7 @@ export default function HolidaysPage() {
       )}
 
       {viewing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{viewing.name}</h2>
             <div className="mt-3 flex flex-col gap-2 text-sm">

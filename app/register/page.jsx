@@ -33,10 +33,10 @@ export default function RegisterPage() {
     };
 
     const getStrengthColor = () => {
-        if (passwordStrength <= 1) return 'bg-red-500';
-        if (passwordStrength === 2) return 'bg-yellow-500';
-        if (passwordStrength === 3) return 'bg-blue-500';
-        return 'bg-green-500';
+        if (passwordStrength <= 1) return 'bg-brand-red';
+        if (passwordStrength === 2) return 'bg-brand-yellow';
+        if (passwordStrength === 3) return 'bg-brand-yellow';
+        return 'bg-brand-yellow';
     };
 
     const getStrengthText = () => {
@@ -94,21 +94,21 @@ export default function RegisterPage() {
         <AuthLayout
             title="Create Account"
             description="Start your journey with LAMHA Tech today"
-            icon={<UserPlus className="h-5 w-5 text-blue-500" />}
+            icon={<UserPlus className="h-5 w-5 text-brand-charcoal" />}
         >
             <form onSubmit={handleSubmit} className="space-y-4">
                 {error && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600 dark:border-red-900 dark:bg-red-950 dark:text-red-400">
+                    <div className="rounded-lg border border-brand-red bg-brand-red px-4 py-3 text-sm text-brand-red border-brand-red bg-brand-red text-brand-red">
                         {error}
                     </div>
                 )}
                 {/* Name Field */}
                 <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <Label htmlFor="name" className="text-sm font-medium text-brand-charcoal dark:text-brand-white">
                         Full Name
                     </Label>
                     <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-charcoal" />
                         <Input
                             id="name"
                             type="text"
@@ -116,18 +116,18 @@ export default function RegisterPage() {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            className="pl-10 h-11 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-blue-500 transition-colors"
+                            className="pl-10 h-11 rounded-lg border-brand-charcoal/20 border-brand-charcoal/20 bg-white dark:bg-brand-charcoal focus:border-brand-yellow focus:ring-brand-yellow transition-colors"
                         />
                     </div>
                 </div>
 
                 {/* Email Field */}
                 <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <Label htmlFor="email" className="text-sm font-medium text-brand-charcoal dark:text-brand-white">
                         Email Address
                     </Label>
                     <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-charcoal" />
                         <Input
                             id="email"
                             type="email"
@@ -135,18 +135,18 @@ export default function RegisterPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="pl-10 h-11 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-blue-500 transition-colors"
+                            className="pl-10 h-11 rounded-lg border-brand-charcoal/20 border-brand-charcoal/20 bg-white dark:bg-brand-charcoal focus:border-brand-yellow focus:ring-brand-yellow transition-colors"
                         />
                     </div>
                 </div>
 
                 {/* Password Field */}
                 <div className="space-y-2">
-                    <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <Label htmlFor="password" className="text-sm font-medium text-brand-charcoal dark:text-brand-white">
                         Password
                     </Label>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-charcoal" />
                         <Input
                             id="password"
                             type={showPassword ? 'text' : 'password'}
@@ -158,12 +158,12 @@ export default function RegisterPage() {
                             }}
                             required
                             minLength={8}
-                            className="pl-10 pr-10 h-11 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-blue-500 transition-colors"
+                            className="pl-10 pr-10 h-11 rounded-lg border-brand-charcoal/20 border-brand-charcoal/20 bg-white dark:bg-brand-charcoal focus:border-brand-yellow focus:ring-brand-yellow transition-colors"
                         />
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-charcoal hover:text-brand-charcoal dark:hover:text-brand-charcoal transition-colors"
                         >
                             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </button>
@@ -175,12 +175,12 @@ export default function RegisterPage() {
                                     <div
                                         key={i}
                                         className={`h-1 flex-1 rounded-full transition-colors ${
-                                            i <= passwordStrength ? getStrengthColor() : 'bg-gray-200 dark:bg-gray-700'
+                                            i <= passwordStrength ? getStrengthColor() : 'bg-brand-white dark:bg-brand-charcoal'
                                         }`}
                                     />
                                 ))}
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                            <p className="text-xs text-brand-charcoal dark:text-brand-white">
                                 Password strength: <span className="font-medium">{getStrengthText()}</span>
                             </p>
                         </div>
@@ -189,11 +189,11 @@ export default function RegisterPage() {
 
                 {/* Confirm Password Field */}
                 <div className="space-y-2">
-                    <Label htmlFor="confirm-password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <Label htmlFor="confirm-password" className="text-sm font-medium text-brand-charcoal dark:text-brand-white">
                         Confirm Password
                     </Label>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-charcoal" />
                         <Input
                             id="confirm-password"
                             type={showConfirmPassword ? 'text' : 'password'}
@@ -201,18 +201,18 @@ export default function RegisterPage() {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            className="pl-10 pr-10 h-11 rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-blue-500 transition-colors"
+                            className="pl-10 pr-10 h-11 rounded-lg border-brand-charcoal/20 border-brand-charcoal/20 bg-white dark:bg-brand-charcoal focus:border-brand-yellow focus:ring-brand-yellow transition-colors"
                         />
                         <button
                             type="button"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-charcoal hover:text-brand-charcoal dark:hover:text-brand-charcoal transition-colors"
                         >
                             {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </button>
                     </div>
                     {confirmPassword && password === confirmPassword && (
-                        <div className="flex items-center gap-1 text-green-500 text-xs">
+                        <div className="flex items-center gap-1 text-brand-charcoal text-xs">
                             <Check className="h-3 w-3" />
                             Passwords match
                         </div>
@@ -225,18 +225,18 @@ export default function RegisterPage() {
                         id="terms"
                         checked={agreeTerms}
                         onCheckedChange={setAgreeTerms}
-                        className="border-gray-300 dark:border-gray-700 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 mt-0.5"
+                        className="border-brand-charcoal/20 border-brand-charcoal/20 data-[state=checked]:bg-brand-yellow data-[state=checked]:border-brand-yellow mt-0.5"
                     />
                     <Label
                         htmlFor="terms"
-                        className="text-sm text-gray-600 dark:text-gray-400 cursor-pointer leading-relaxed"
+                        className="text-sm text-brand-charcoal dark:text-brand-white cursor-pointer leading-relaxed"
                     >
                         I agree to the{' '}
-                        <Link href="/terms" className="text-blue-500 hover:underline">
+                        <Link href="/terms" className="text-brand-charcoal hover:underline">
                             Terms of Service
                         </Link>{' '}
                         and{' '}
-                        <Link href="/privacy" className="text-blue-500 hover:underline">
+                        <Link href="/privacy" className="text-brand-charcoal hover:underline">
                             Privacy Policy
                         </Link>
                     </Label>
@@ -246,7 +246,7 @@ export default function RegisterPage() {
                 <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full h-11 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm shadow-sm transition-colors disabled:opacity-50"
+                    className="w-full h-11 rounded-lg bg-brand-yellow hover:bg-brand-yellow text-brand-charcoal font-medium text-sm shadow-sm transition-colors disabled:opacity-50"
                 >
                     {isLoading ? (
                         <div className="flex items-center gap-2">
@@ -261,11 +261,11 @@ export default function RegisterPage() {
 
             {/* Sign In Link */}
             <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-brand-charcoal dark:text-brand-white">
                     Already have an account?{' '}
                     <Link
                         href="/login"
-                        className="font-medium text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                        className="font-medium text-brand-charcoal hover:text-brand-charcoal dark:text-brand-yellow dark:hover:text-brand-charcoal transition-colors"
                     >
                         Sign in
                     </Link>

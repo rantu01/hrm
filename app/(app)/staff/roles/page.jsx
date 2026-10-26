@@ -275,7 +275,7 @@ export default function StaffRolesPage() {
                     <TableCell>
                       <div className="font-semibold">{role.name || '—'}</div>
                       {role.isSystem ? (
-                        <span className="mt-1 inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                        <span className="mt-1 inline-flex items-center rounded-md bg-brand-yellow px-2 py-0.5 text-[11px] font-medium text-brand-charcoal ring-1 ring-inset ring-brand-yellow">
                           System
                         </span>
                       ) : null}
@@ -327,7 +327,7 @@ export default function StaffRolesPage() {
       </div>
 
       {viewing ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{viewing.name}</h2>
             {viewing.description ? <p className="mt-1 text-sm text-muted-foreground">{viewing.description}</p> : null}
@@ -368,7 +368,7 @@ export default function StaffRolesPage() {
       ) : null}
 
       {showModal ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{editing ? 'Edit Role' : 'Add Role'}</h2>
             {error ? (

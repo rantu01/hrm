@@ -14,7 +14,7 @@ export default function AppLayout({ children }) {
       <Suspense fallback={null}>
         <AppSidebar />
       </Suspense>
-      <AppContent variant="sidebar" className="bg-[#F8FAFE] dark:bg-black">
+      <AppContent variant="sidebar" className="px-4 py-6 bg-brand-white dark:bg-brand-charcoal">
         <Suspense fallback={null}>
           <AppSidebarHeader />
         </Suspense>

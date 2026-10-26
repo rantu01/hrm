@@ -337,7 +337,7 @@ export default function AnnouncementsPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{editing ? 'Edit' : 'Create'} Announcement</h2>
             {error && <div className="mt-3 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</div>}
@@ -422,7 +422,7 @@ export default function AnnouncementsPage() {
       )}
 
       {viewing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">{viewing.title}</h2>
             <div className="mt-1 flex flex-wrap gap-1">
@@ -435,7 +435,7 @@ export default function AnnouncementsPage() {
             <div className="mt-3 whitespace-pre-wrap text-sm">{viewing.content}</div>
             <div className="mt-2 text-sm"><span className="font-medium">Dates: </span>{fmtRange(viewing)}</div>
             {viewing.attachments && <div className="mt-2 text-sm"><a href={viewing.attachments} target="_blank" rel="noreferrer" className="text-primary underline">View attachment</a></div>}
-            {viewing._readOk && <div className="mt-3 rounded-md bg-green-50 px-3 py-2 text-sm text-green-700">Marked as read.</div>}
+            {viewing._readOk && <div className="mt-3 rounded-md bg-brand-yellow px-3 py-2 text-sm text-brand-charcoal">Marked as read.</div>}
             <div className="mt-4 flex flex-col gap-1.5">
               <Label>Mark as read for employee</Label>
               <div className="flex gap-2">
@@ -456,7 +456,7 @@ export default function AnnouncementsPage() {
       )}
 
       {statsFor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">Statistics: {statsFor.title}</h2>
             {!stats ? (

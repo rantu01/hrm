@@ -693,7 +693,7 @@ export default function HrCrudPage({
       </div>
 
       {viewConfig && viewing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">
               {viewConfig.title || `${title} Details`}
@@ -718,7 +718,7 @@ export default function HrCrudPage({
       )}
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">
               {editing ? 'Edit' : 'Create'} {title}

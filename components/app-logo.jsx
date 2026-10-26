@@ -27,7 +27,7 @@ export function AppLogo({ className, imageClassName, compact = false, priority =
     return (
         <span className={cn('inline-flex items-center', className)}>
             <Image
-                src="/Icon/Asset%202%404x.png"
+                src="/Icon/Full White@4x.png"
                 alt="LAMHA Tech"
                 width={LOGO_WIDTH}
                 height={LOGO_HEIGHT}

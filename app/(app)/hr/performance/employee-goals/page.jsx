@@ -125,7 +125,7 @@ export default function EmployeeGoalsPage() {
               <div>
                 <div className="font-medium">{value || '—'}</div>
                 {row?.goal_type_id?.name ? (
-                  <span className="mt-1 inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                  <span className="mt-1 inline-flex items-center rounded-md bg-brand-yellow px-2 py-1 text-xs font-medium text-brand-charcoal ring-1 ring-inset ring-brand-yellow">
                     {row.goal_type_id.name}
                   </span>
                 ) : null}
@@ -162,7 +162,7 @@ export default function EmployeeGoalsPage() {
               if (!start || !end || Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return '—';
               const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
               return (
-                <span className="inline-flex items-center rounded-md bg-violet-50 px-2 py-1 text-xs font-medium text-violet-700 ring-1 ring-inset ring-violet-600/20">
+                <span className="inline-flex items-center rounded-md bg-brand-yellow px-2 py-1 text-xs font-medium text-brand-charcoal ring-1 ring-inset ring-brand-yellow">
                   {days}d
                 </span>
               );
@@ -226,7 +226,7 @@ export default function EmployeeGoalsPage() {
       />
 
       {progressRow && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-sm rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">Update Goal Progress</h2>
             <p className="mt-1 text-sm text-muted-foreground">{progressRow.title}</p>

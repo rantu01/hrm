@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { PanelLeft, ChevronRight } from 'lucide-react';
+import { Menu, PanelLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SidebarTrigger } from './app-sidebar';
 
 export function AppSidebarHeader({ breadcrumbs = [] }) {
     const pathname = usePathname();
@@ -12,12 +13,10 @@ export function AppSidebarHeader({ breadcrumbs = [] }) {
         <header className="border-sidebar-border/50 flex h-14 shrink-0 items-center gap-2 border-b px-[10px] transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 lg:px-[50px] print:hidden">
             <div className="flex w-full items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <button
-                        className="flex h-7 w-7 items-center justify-center rounded-md text-sidebar-foreground hover:bg-sidebar-accent cursor-pointer"
-                        title="Toggle Sidebar"
-                    >
-                        <PanelLeft className="h-4 w-4" />
-                    </button>
+                    <SidebarTrigger className="h-9 w-9 text-sidebar-foreground hover:bg-sidebar-accent lg:h-7 lg:w-7">
+                        <Menu className="h-5 w-5 lg:hidden" />
+                        <PanelLeft className="hidden h-4 w-4 lg:block" />
+                    </SidebarTrigger>
                     {breadcrumbs.length > 0 && (
                         <nav className="flex items-center gap-1 text-sm">
                             {breadcrumbs.map((crumb, index) => (

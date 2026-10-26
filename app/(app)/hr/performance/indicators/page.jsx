@@ -54,7 +54,7 @@ export default function PerformanceIndicatorsPage() {
             <div>
               <div className="font-medium">{value || '—'}</div>
               {row?.category_id?.name ? (
-                <span className="mt-1 inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                <span className="mt-1 inline-flex items-center rounded-md bg-brand-yellow px-2 py-1 text-xs font-medium text-brand-charcoal ring-1 ring-inset ring-brand-yellow">
                   {row.category_id.name}
                 </span>
               ) : null}

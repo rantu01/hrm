@@ -118,7 +118,7 @@ export default function CreateEmployeeReviewPage() {
               <div className="space-y-2">
                 <Label htmlFor="employee_id" required>Employee</Label>
                 <Select value={formData.employee_id} onValueChange={(v) => handleChange('employee_id', v)}>
-                  <SelectTrigger className={errors.employee_id ? 'border-red-500' : ''}>
+                  <SelectTrigger className={errors.employee_id ? 'border-brand-red' : ''}>
                     <SelectValue placeholder="Select employee" />
                   </SelectTrigger>
                   <SelectContent searchable>
@@ -129,13 +129,13 @@ export default function CreateEmployeeReviewPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                {errors.employee_id && <p className="text-sm text-red-500">{errors.employee_id}</p>}
+                {errors.employee_id && <p className="text-sm text-brand-red">{errors.employee_id}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="reviewer_id" required>Reviewer</Label>
                 <Select value={formData.reviewer_id} onValueChange={(v) => handleChange('reviewer_id', v)}>
-                  <SelectTrigger className={errors.reviewer_id ? 'border-red-500' : ''}>
+                  <SelectTrigger className={errors.reviewer_id ? 'border-brand-red' : ''}>
                     <SelectValue placeholder="Select reviewer" />
                   </SelectTrigger>
                   <SelectContent searchable>
@@ -146,13 +146,13 @@ export default function CreateEmployeeReviewPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                {errors.reviewer_id && <p className="text-sm text-red-500">{errors.reviewer_id}</p>}
+                {errors.reviewer_id && <p className="text-sm text-brand-red">{errors.reviewer_id}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="review_cycle_id" required>Review Cycle</Label>
                 <Select value={formData.review_cycle_id} onValueChange={(v) => handleChange('review_cycle_id', v)}>
-                  <SelectTrigger className={errors.review_cycle_id ? 'border-red-500' : ''}>
+                  <SelectTrigger className={errors.review_cycle_id ? 'border-brand-red' : ''}>
                     <SelectValue placeholder="Select review cycle" />
                   </SelectTrigger>
                   <SelectContent searchable>
@@ -163,7 +163,7 @@ export default function CreateEmployeeReviewPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                {errors.review_cycle_id && <p className="text-sm text-red-500">{errors.review_cycle_id}</p>}
+                {errors.review_cycle_id && <p className="text-sm text-brand-red">{errors.review_cycle_id}</p>}
               </div>
 
               <div className="space-y-2">

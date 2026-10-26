@@ -371,7 +371,7 @@ export default function EmployeeDetailPage({ params }) {
       )}
 
       {pwOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
           <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-lg">
             <h2 className="text-lg font-semibold">Change Password — {employee?.name}</h2>
             {pwError && (

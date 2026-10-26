@@ -42,8 +42,8 @@ export function AppHeader({ breadcrumbs = [] }) {
                                 className={cn(
                                     'flex h-9 items-center px-3 text-sm font-medium transition-colors hover:text-foreground cursor-pointer',
                                     pathname === item.href || pathname.startsWith(item.href + '/')
-                                        ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
-                                        : 'text-neutral-600 dark:text-neutral-400'
+                                        ? 'text-brand-charcoal dark:bg-brand-charcoal dark:text-brand-white'
+                                        : 'text-brand-charcoal dark:text-brand-white'
                                 )}
                             >
                                 {item.title}
@@ -59,7 +59,7 @@ export function AppHeader({ breadcrumbs = [] }) {
                             </button>
                             <button className="relative flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer">
                                 <Bell className="size-5 opacity-80" />
-                                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500" />
+                                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-brand-red" />
                             </button>
                             <div className="hidden lg:flex">
                                 {rightNavItems.map((item) => (
@@ -77,8 +77,8 @@ export function AppHeader({ breadcrumbs = [] }) {
 
                         {/* User Avatar */}
                         <button className="flex size-10 items-center justify-center rounded-full p-1 cursor-pointer">
-                            <div className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700">
-                                <span className="text-xs font-medium text-black dark:text-white">
+                            <div className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-brand-white dark:bg-brand-charcoal">
+                                <span className="text-xs font-medium text-brand-charcoal dark:text-white">
                                     U
                                 </span>
                             </div>
@@ -90,7 +90,7 @@ export function AppHeader({ breadcrumbs = [] }) {
             {/* Breadcrumbs */}
             {breadcrumbs.length > 1 && (
                 <div className="border-sidebar-border/70 flex w-full border-b">
-                    <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
+                    <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-brand-charcoal md:max-w-7xl">
                         <nav className="flex items-center gap-1 text-sm">
                             {breadcrumbs.map((crumb, index) => (
                                 <span key={index} className="flex items-center gap-1">

@@ -156,9 +156,9 @@ export function NavMain({ items = [], searchQuery = '' }) {
     if (searchQuery && items.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center px-4 py-10 text-center">
-                <Search className="mb-3 h-8 w-8 text-gray-300 dark:text-gray-600" />
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">No menu found</p>
-                <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">&quot;{searchQuery}&quot;</p>
+                <Search className="mb-3 h-8 w-8 text-brand-charcoal dark:text-brand-white" />
+                <p className="text-sm font-medium text-brand-charcoal dark:text-brand-white">No menu found</p>
+                <p className="mt-1 text-xs text-brand-charcoal dark:text-brand-white">&quot;{searchQuery}&quot;</p>
             </div>
         );
     }
@@ -181,7 +181,7 @@ export function NavMain({ items = [], searchQuery = '' }) {
                 <SidebarGroup key={groupIndex} className={cn('px-1.5 py-0', groupIndex > 0 && 'mt-3')}>
                     {group.label && (
                         <SidebarGroupLabel className="flex w-full px-2 pt-2 pb-1.5">
-                            <span className="text-[13px] font-bold capitalize tracking-wide text-gray-500 dark:text-gray-400 leading-none">
+                            <span className="text-[13px] font-bold capitalize tracking-wide text-brand-charcoal dark:text-brand-white leading-none">
                                 {group.label}
                             </span>
                         </SidebarGroupLabel>
