@@ -13,7 +13,7 @@ export function AppSidebarHeader({ breadcrumbs = [] }) {
         <header className="border-sidebar-border/50 flex h-14 shrink-0 items-center gap-2 border-b px-[10px] transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 lg:px-[50px] print:hidden">
             <div className="flex w-full items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <SidebarTrigger className="h-9 w-9 text-sidebar-foreground hover:bg-sidebar-accent lg:h-7 lg:w-7">
+                    <SidebarTrigger className="h-9 w-9 text-foreground hover:bg-accent hover:text-accent-foreground lg:h-7 lg:w-7">
                         <Menu className="h-5 w-5 lg:hidden" />
                         <PanelLeft className="hidden h-4 w-4 lg:block" />
                     </SidebarTrigger>
