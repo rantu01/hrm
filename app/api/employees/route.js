@@ -3,6 +3,7 @@ import Employee from '@/lib/models/Employee';
 import User from '@/lib/models/User';
 import EmployeeDocument from '@/lib/models/EmployeeDocument';
 import { requireAuth, handleApiError } from '@/lib/auth';
+import { ensureEmployeeProfiles } from '@/lib/leave-server';
 import { validateBody, parseJsonBody } from '@/lib/validation';
 
 // All routes require authentication
@@ -57,6 +58,7 @@ export async function GET(request) {
   try {
     await requireAuth(request);
     await connectDB();
+    await ensureEmployeeProfiles();
 
     const sp = request.nextUrl.searchParams;
     const page = parseInt(sp.get('page'), 10) || 1;

@@ -4,6 +4,7 @@ import Role from '@/lib/models/Role';
 import Employee from '@/lib/models/Employee';
 import { requireAuth, requirePermission, handleApiError } from '@/lib/auth';
 import { validateBody, parseJsonBody } from '@/lib/validation';
+import { ensureEmployeeProfiles } from '@/lib/leave-server';
 
 const SORT_MAP = { name: 'name', created_at: 'createdAt', createdAt: 'createdAt' };
 
@@ -119,6 +120,7 @@ export async function POST(request) {
       type: roleDoc.name === 'Super Admin' ? 'superadmin' : 'employee',
       status: 'active',
     });
+    await ensureEmployeeProfiles();
 
     return Response.json(
       { message: 'User created successfully', user: user.toPublicProfile() },

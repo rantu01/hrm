@@ -599,8 +599,12 @@ const mainNavItems = [
         title: 'Leave Management',
         icon: CalendarDays,
         children: [
-            { title: 'Leave Types', href: '/leave/types' },
+            { title: 'Leave Dashboard', href: '/leave/dashboard' },
             { title: 'Leave Applications', href: '/leave/applications' },
+            { title: 'Leave Calendar', href: '/leave/calendar' },
+            { title: 'Leave Types', href: '/leave/types' },
+            { title: 'Leave Balances', href: '/leave/balances' },
+            { title: 'Leave Policies', href: '/leave/policies' },
         ],
     },
     {
