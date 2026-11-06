@@ -6,9 +6,10 @@ import {
   RefreshCw, Users, Building2, Briefcase, UserPlus, Calendar,
   Clock, TrendingUp, ExternalLink, Copy, CheckCircle,
   ArrowUpRight, ChevronRight, Settings, BarChart3,
-  DollarSign, Package, AlertTriangle, PartyPopper, FileText, GraduationCap,
+  Package, AlertTriangle, PartyPopper, FileText, GraduationCap,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { TakaIcon } from '@/components/taka-icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -54,10 +55,10 @@ const attendanceWeekly = [
 ];
 
 const leaveOverview = [
-  { name: 'Annual', value: 18, color: '#FFEB00' },
-  { name: 'Sick', value: 9, color: '#E60023' },
-  { name: 'Personal', value: 7, color: '#FFEB00' },
-  { name: 'Unpaid', value: 3, color: '#1C2925' },
+  { name: 'Annual', value: 18, color: '#E60023' },
+  { name: 'Sick', value: 9, color: '#1C2925' },
+  { name: 'Personal', value: 7, color: '#8A9490' },
+  { name: 'Unpaid', value: 3, color: '#F08A95' },
 ];
 
 const employeeGrowthData = [
@@ -103,7 +104,7 @@ const todayOnLeave = [
   { id: 3, name: 'David Kim', designation: 'DevOps Engineer', leaveType: 'Personal' },
 ];
 
-const formatCurrency = (val) => '$' + val.toLocaleString();
+const formatCurrency = (val) => '৳' + Number(val || 0).toLocaleString();
 
 const getGreeting = (date) => {
   const h = date.getHours();
@@ -123,61 +124,61 @@ function KpiCard({ icon: Icon, title, value, subText, accent, href, delay, mount
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal dark:text-brand-yellow',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
     blue: {
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
     emerald: {
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal dark:text-brand-yellow',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
     violet: {
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal dark:text-brand-yellow',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
     amber: {
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
     orange: {
       border: 'border-brand-yellow border-brand-yellow',
       bg: 'bg-brand-yellow dark:bg-brand-charcoal',
       iconBg: 'bg-brand-yellow dark:bg-brand-charcoal',
-      iconColor: 'text-brand-charcoal dark:text-brand-yellow',
-      titleColor: 'text-brand-charcoal dark:text-brand-yellow',
-      valueColor: 'text-brand-charcoal dark:text-brand-yellow',
-      subColor: 'text-brand-charcoal',
-      arrowColor: 'text-brand-charcoal group-hover:text-brand-charcoal',
+      iconColor: 'text-brand-white',
+      titleColor: 'text-brand-white',
+      valueColor: 'text-brand-white',
+      subColor: 'text-brand-white',
+      arrowColor: 'text-brand-white group-hover:text-brand-white',
     },
   };
 
@@ -273,28 +274,28 @@ export default function DashboardPage() {
           fadeUp(0, mounted)
         )}
       >
-        <span className="pointer-events-none absolute -top-10 -left-10 w-48 h-48 rounded-full bg-brand-yellow/20 blur-2xl animate-pulse" style={{ animationDuration: '4s' }} />
-        <span className="pointer-events-none absolute -bottom-10 right-0 w-56 h-56 rounded-full bg-brand-yellow/15 blur-2xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1.5s' }} />
-        <span className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-brand-yellow/10 blur-2xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '0.8s' }} />
-        <span className="pointer-events-none absolute top-4 left-1/3 w-1.5 h-1.5 rounded-full bg-brand-yellow  animate-ping" style={{ animationDuration: '3s' }} />
-        <span className="pointer-events-none absolute bottom-4 left-1/4 w-1 h-1 rounded-full bg-brand-yellow  animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
-        <span className="pointer-events-none absolute top-3 right-1/4 w-1.5 h-1.5 rounded-full bg-brand-yellow  animate-ping" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
-        <span className="pointer-events-none absolute bottom-3 right-1/3 w-1 h-1 rounded-full bg-brand-yellow  animate-ping" style={{ animationDuration: '2.8s', animationDelay: '1.8s' }} />
+        <span className="pointer-events-none absolute -top-10 -left-10 w-48 h-48 rounded-full bg-brand-red/20 blur-2xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <span className="pointer-events-none absolute -bottom-10 right-0 w-56 h-56 rounded-full bg-brand-red/15 blur-2xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1.5s' }} />
+        <span className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-brand-red/10 blur-2xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '0.8s' }} />
+        <span className="pointer-events-none absolute top-4 left-1/3 w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" style={{ animationDuration: '3s' }} />
+        <span className="pointer-events-none absolute bottom-4 left-1/4 w-1 h-1 rounded-full bg-brand-red animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+        <span className="pointer-events-none absolute top-3 right-1/4 w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
+        <span className="pointer-events-none absolute bottom-3 right-1/3 w-1 h-1 rounded-full bg-brand-red animate-ping" style={{ animationDuration: '2.8s', animationDelay: '1.8s' }} />
         <div className="pointer-events-none absolute bottom-0 left-0 w-full overflow-hidden" style={{ height: '40px' }}>
           <div className="absolute bottom-0 left-0 w-[200%] animate-water-wave-1">
-            <svg viewBox="0 0 2400 40" preserveAspectRatio="none" className="w-full h-[40px]"><path fill="var(--brand-yellow)" d="M0,20 C150,38 350,0 600,20 C850,38 1050,0 1200,20 C1350,38 1550,0 1800,20 C2050,38 2250,0 2400,20 L2400,40 L0,40 Z" /></svg>
+            <svg viewBox="0 0 2400 40" preserveAspectRatio="none" className="w-full h-[40px]"><path fill="var(--brand-red)" d="M0,20 C150,38 350,0 600,20 C850,38 1050,0 1200,20 C1350,38 1550,0 1800,20 C2050,38 2250,0 2400,20 L2400,40 L0,40 Z" /></svg>
           </div>
           <div className="absolute bottom-0 left-0 w-[200%] animate-water-wave-2">
-            <svg viewBox="0 0 2400 40" preserveAspectRatio="none" className="w-full h-[40px]"><path fill="var(--brand-yellow)" d="M0,26 C200,10 400,38 600,22 C800,8 1000,36 1200,24 C1400,10 1600,38 1800,22 C2000,8 2200,36 2400,24 L2400,40 L0,40 Z" /></svg>
+            <svg viewBox="0 0 2400 40" preserveAspectRatio="none" className="w-full h-[40px]"><path fill="var(--brand-red)" d="M0,26 C200,10 400,38 600,22 C800,8 1000,36 1200,24 C1400,10 1600,38 1800,22 C2000,8 2200,36 2400,24 L2400,40 L0,40 Z" /></svg>
           </div>
           <div className="absolute bottom-0 left-0 w-[200%] animate-water-wave-3">
             <svg viewBox="0 0 2400 40" preserveAspectRatio="none" className="w-full h-[40px]"><path fill="var(--brand-charcoal)" d="M0,30 C300,14 500,38 700,28 C900,16 1100,38 1200,28 C1400,14 1600,38 1900,28 C2100,16 2300,38 2400,28 L2400,40 L0,40 Z" /></svg>
           </div>
         </div>
         <div className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-300 min-w-0">
-          <p className="text-brand-yellow text-xs sm:text-sm mb-0.5 transition-colors duration-300">{getGreeting(now)},</p>
+          <p className="text-brand-red text-xs sm:text-sm mb-0.5 transition-colors duration-300">{getGreeting(now)},</p>
           <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-            <h2 className="text-brand-white text-lg sm:text-xl md:text-2xl font-bold group-hover:text-brand-yellow transition-colors duration-300">
+            <h2 className="text-brand-white text-lg sm:text-xl md:text-2xl font-bold group-hover:text-brand-red transition-colors duration-300">
               Company Admin
             </h2>
             <span className="animate-hand-wave text-xl sm:text-2xl md:text-3xl select-none shrink-0">👋</span>
@@ -304,9 +305,9 @@ export default function DashboardPage() {
           </p>
           <div className="flex items-center gap-2.5 sm:gap-3 mt-2.5 sm:mt-3">
             <div className="flex items-center gap-1.5 shrink-0">
-              <div className="w-2 h-2 bg-brand-yellow rounded-full animate-bounce" style={{ animationDelay: '0ms', animationDuration: '1.2s' }} />
-              <div className="w-2 h-2 bg-brand-yellow rounded-full animate-bounce" style={{ animationDelay: '150ms', animationDuration: '1.2s' }} />
-              <div className="w-2 h-2 bg-brand-yellow rounded-full animate-bounce" style={{ animationDelay: '300ms', animationDuration: '1.2s' }} />
+              <div className="w-2 h-2 bg-brand-red rounded-full animate-bounce" style={{ animationDelay: '0ms', animationDuration: '1.2s' }} />
+              <div className="w-2 h-2 bg-brand-red rounded-full animate-bounce" style={{ animationDelay: '150ms', animationDuration: '1.2s' }} />
+              <div className="w-2 h-2 bg-brand-red rounded-full animate-bounce" style={{ animationDelay: '300ms', animationDuration: '1.2s' }} />
             </div>
             <span className="text-brand-white font-semibold text-xs sm:text-sm group-hover:scale-105 transition-transform duration-200">
               {stats.presentToday} present today
@@ -342,7 +343,7 @@ export default function DashboardPage() {
       {/* ── KPI Row ── */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <KpiCard
-          icon={DollarSign}
+          icon={TakaIcon}
           title="Payroll This Month"
           value={formatCurrency(stats.totalPayrollThisMonth)}
           subText={`${stats.payrollRunsThisMonth} runs completed`}
@@ -525,21 +526,21 @@ export default function DashboardPage() {
           <CardContent className="p-4 pt-5">
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={attendanceWeekly} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#FFEB00" strokeOpacity={0.12} vertical={false} />
-                <XAxis dataKey="day" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#FFEB00', strokeOpacity: 0.3 }} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E60023" strokeOpacity={0.12} vertical={false} />
+                <XAxis dataKey="day" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#E60023', strokeOpacity: 0.3 }} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={false} tickLine={false} allowDecimals={false} width={28} />
                 <Tooltip
-                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#FFEB00' }}
+                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#E60023' }}
                 />
-                <Bar dataKey="present" name="Present" stackId="a" fill="#FFEB00" radius={[0, 0, 0, 0]} maxBarSize={32} />
-                <Bar dataKey="leave" name="On Leave" stackId="a" fill="#FFEB00" maxBarSize={32} />
+                <Bar dataKey="present" name="Present" stackId="a" fill="#1C2925" radius={[0, 0, 0, 0]} maxBarSize={32} />
+                <Bar dataKey="leave" name="On Leave" stackId="a" fill="#8A9490" maxBarSize={32} />
                 <Bar dataKey="absent" name="Absent" stackId="a" fill="#E60023" radius={[4, 4, 0, 0]} maxBarSize={32} />
               </BarChart>
             </ResponsiveContainer>
             <div className="flex items-center gap-4 mt-3 justify-center">
               {[
-                { color: '#FFEB00', label: 'Present' },
-                { color: '#FFEB00', label: 'On Leave' },
+                { color: '#1C2925', label: 'Present' },
+                { color: '#8A9490', label: 'On Leave' },
                 { color: '#E60023', label: 'Absent' },
               ].map((l) => (
                 <div key={l.label} className="flex items-center gap-1.5">
@@ -559,7 +560,7 @@ export default function DashboardPage() {
                 <CardTitle className="text-base font-semibold">Leave Overview</CardTitle>
                 <p className="text-xs text-muted-foreground mt-0.5">Applications this month by status</p>
               </div>
-              <span className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium bg-brand-yellow text-brand-charcoal ring-1 ring-inset ring-brand-yellow dark:bg-brand-charcoal dark:text-brand-yellow">
+              <span className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium bg-brand-red text-brand-white ring-1 ring-inset ring-brand-red">
                 {leaveOverview.reduce((s, m) => s + m.value, 0)} total
               </span>
             </div>
@@ -575,7 +576,7 @@ export default function DashboardPage() {
                       ))}
                     </Pie>
                     <Tooltip
-                      contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#FFEB00' }}
+                      contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#E60023' }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -634,18 +635,18 @@ export default function DashboardPage() {
               <AreaChart data={employeeGrowthData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#FFEB00" stopOpacity={0.25} />
-                    <stop offset="95%" stopColor="#FFEB00" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#E60023" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#E60023" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#FFEB00" strokeOpacity={0.12} vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#FFEB00', strokeOpacity: 0.3 }} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#FFEB00', strokeOpacity: 0.3 }} tickLine={false} width={40} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E60023" strokeOpacity={0.12} vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#E60023', strokeOpacity: 0.3 }} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#E60023', strokeOpacity: 0.3 }} tickLine={false} width={40} />
                 <Tooltip
-                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#FFEB00' }}
+                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#E60023' }}
                   formatter={(v) => [v, 'Employees']}
                 />
-                <Area type="monotone" dataKey="employees" stroke="#FFEB00" strokeWidth={2} fill="url(#growthGrad)" dot={{ r: 3, fill: '#FFEB00', strokeWidth: 0 }} activeDot={{ r: 5, fill: '#FFEB00', strokeWidth: 0 }} />
+                <Area type="monotone" dataKey="employees" stroke="#E60023" strokeWidth={2} fill="url(#growthGrad)" dot={{ r: 3, fill: '#E60023', strokeWidth: 0 }} activeDot={{ r: 5, fill: '#E60023', strokeWidth: 0 }} />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
@@ -660,7 +661,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-muted-foreground mt-0.5">Monthly net pay - {selectedPayrollYear}</p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium bg-brand-yellow text-brand-charcoal ring-1 ring-inset ring-brand-yellow dark:bg-brand-charcoal dark:text-brand-yellow">
+                <span className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium bg-brand-red text-brand-white ring-1 ring-inset ring-brand-red">
                   {formatCurrency(payrollTrendData.reduce((s, m) => s + m.netPay, 0))}
                 </span>
                 <select
@@ -678,14 +679,14 @@ export default function DashboardPage() {
           <CardContent className="p-4 pt-5">
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={payrollTrendData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#FFEB00" strokeOpacity={0.12} vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#FFEB00', strokeOpacity: 0.3 }} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E60023" strokeOpacity={0.12} vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={{ stroke: '#E60023', strokeOpacity: 0.3 }} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: 'currentColor' }} className="text-muted-foreground" axisLine={false} tickLine={false} allowDecimals={false} width={40} />
                 <Tooltip
-                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#FFEB00' }}
-                  formatter={(v) => [`$${v.toLocaleString()}`, 'Net Pay']}
+                  contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid color-mix(in srgb, var(--brand-yellow) 30%, transparent)', backgroundColor: 'color-mix(in srgb, var(--brand-white) 70%, transparent)', color: '#E60023' }}
+                  formatter={(v) => [`৳${v.toLocaleString()}`, 'Net Pay']}
                 />
-                <Bar dataKey="netPay" name="Net Pay" fill="#FFEB00" radius={[4, 4, 0, 0]} maxBarSize={32} />
+                <Bar dataKey="netPay" name="Net Pay" fill="#E60023" radius={[4, 4, 0, 0]} maxBarSize={32} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

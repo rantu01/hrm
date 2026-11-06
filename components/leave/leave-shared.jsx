@@ -29,7 +29,7 @@ export function TypeBadge({ leaveType, payment, className }) {
     <span className={cn('inline-flex items-center gap-1.5', className)}>
       <span
         className="h-2.5 w-2.5 shrink-0 rounded-full border border-black/10"
-        style={{ backgroundColor: leaveType.color || '#FFEB00' }}
+        style={{ backgroundColor: leaveType.color || '#E60023' }}
       />
       <span className="font-medium">{leaveType.name || 'Leave'}</span>
       {payment && (

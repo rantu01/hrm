@@ -46,7 +46,7 @@ const EMPTY_FORM = {
   code: '',
   description: '',
   annualAllocation: '20',
-  color: '#FFEB00',
+  color: '#E60023',
   isPaid: true,
   requiresApproval: true,
   allowHalfDay: true,
@@ -141,7 +141,7 @@ export default function LeaveTypesPage() {
       code: item.code || '',
       description: item.description || '',
       annualAllocation: String(item.annualAllocation ?? 0),
-      color: item.color || '#FFEB00',
+      color: item.color || '#E60023',
       isPaid: item.isPaid !== false,
       requiresApproval: item.requiresApproval !== false,
       allowHalfDay: item.allowHalfDay !== false,
@@ -391,7 +391,7 @@ export default function LeaveTypesPage() {
                       <div className="flex items-start gap-2">
                         <span
                           className="mt-1 h-3 w-3 shrink-0 rounded-full border border-black/10"
-                          style={{ backgroundColor: item.color || '#FFEB00' }}
+                          style={{ backgroundColor: item.color || '#E60023' }}
                         />
                         <div className="min-w-0">
                           <div className="font-medium">{item.name}</div>

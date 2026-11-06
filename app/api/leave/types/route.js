@@ -135,7 +135,7 @@ export async function POST(request) {
       if (duplicateCode) throw new ApiError(409, 'A leave type with this code already exists');
     }
 
-    const color = String(body.color || '#FFEB00').trim();
+    const color = String(body.color || '#E60023').trim();
     if (!HEX_COLOR.test(color)) throw new ApiError(400, 'Color must be a valid hex value');
 
     const leaveType = await LeaveType.create({

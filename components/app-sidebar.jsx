@@ -9,7 +9,6 @@ import {
     UserPlus,
     CalendarDays,
     Clock,
-    DollarSign,
     Settings,
     ChevronDown,
     ChevronRight,
@@ -27,6 +26,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AppIconMark, AppLogo } from './app-logo';
+import { TakaIcon } from './taka-icon';
 import { NavMain } from './nav-main';
 import { NavUser } from './nav-user';
 
@@ -617,7 +617,7 @@ const mainNavItems = [
     },
     {
         title: 'Payroll Management',
-        icon: DollarSign,
+        icon: TakaIcon,
         children: [
             { title: 'Salary Components', href: '/payroll/salary-components' },
             { title: 'Employee Salaries', href: '/payroll/employee-salaries' },

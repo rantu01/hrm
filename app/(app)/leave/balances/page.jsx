@@ -573,7 +573,7 @@ export default function LeaveBalancesPage() {
                         <span className="inline-flex items-center gap-1.5">
                           <span
                             className="h-2.5 w-2.5 rounded-full border border-black/10"
-                            style={{ backgroundColor: balance.leaveType?.color || '#FFEB00' }}
+                            style={{ backgroundColor: balance.leaveType?.color || '#E60023' }}
                           />
                           {balance.leaveType?.name || '—'}
                         </span>

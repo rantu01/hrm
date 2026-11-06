@@ -15,7 +15,7 @@ const DEFAULT_TYPES = [
     includeWeekends: false,
     minNoticeDays: 3,
     maxConsecutiveDays: 0,
-    color: '#FFEB00',
+    color: '#E60023',
   },
   {
     name: 'Sick Leave',

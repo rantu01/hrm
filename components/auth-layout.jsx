@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Users, ShieldCheck, Link as LinkIcon, Briefcase, Calendar, UserCheck, FileText, Award, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AppLogo } from '@/components/app-logo';
 
-const PRIMARY_COLOR = '#FFEB00';
+const PRIMARY_COLOR = '#E60023';
 
 export function AuthLayout({ children, title, description, icon, status, statusType = 'success' }) {
     const pathname = usePathname();
@@ -63,13 +64,20 @@ export function AuthLayout({ children, title, description, icon, status, statusT
             {/* Left Side (Form) */}
             <div className="w-full md:w-[50%] xl:w-[45%] flex flex-col justify-between min-h-screen md:min-h-0 md:h-full p-4 sm:p-6 lg:p-8 xl:p-8 relative overflow-y-auto">
                 {/* Language Switcher for Mobile */}
-                <div className="absolute top-6 end-6 z-20 bg-white dark:bg-brand-charcoal rounded-md shadow-sm md:hidden">
+                {/* <div className="absolute top-6 end-6 z-20 bg-white dark:bg-brand-charcoal rounded-md shadow-sm md:hidden">
                     <LanguageSwitcher />
-                </div>
+                </div> */}
 
                 {/* Header - Logo */}
                 <div className="flex justify-center">
-                    <AppLogo imageClassName="h-9 sm:h-10" priority />
+                    <Image
+                        src="/Icon/Full%20Black%404x.png"
+                        alt="LAMHA Tech"
+                        width={2671}
+                        height={858}
+                        priority
+                        className="h-auto w-44 dark:invert sm:w-52"
+                    />
                 </div>
 
                 {/* Main Form Content */}
@@ -119,9 +127,9 @@ export function AuthLayout({ children, title, description, icon, status, statusT
             {/* Right Side (Graphics/Promotional for HRM) */}
             <div className="hidden md:flex w-full md:w-[50%] xl:w-[55%] bg-brand-white dark:bg-brand-charcoal items-center justify-center p-4 lg:p-8 xl:p-12 relative overflow-hidden">
                 {/* Language Switcher for Desktop */}
-                <div className="absolute top-6 end-6 lg:top-12 lg:end-12 z-20 bg-white dark:bg-brand-charcoal rounded-lg shadow-sm border border-brand-charcoal/20 border-brand-charcoal/20">
+                {/* <div className="absolute top-6 end-6 lg:top-12 lg:end-12 z-20 bg-white dark:bg-brand-charcoal rounded-lg shadow-sm border border-brand-charcoal/20 border-brand-charcoal/20">
                     <LanguageSwitcher />
-                </div>
+                </div> */}
 
                 {/* Promotional Content */}
                 <div className="w-full max-w-[800px] z-10 py-2 xl:py-4">

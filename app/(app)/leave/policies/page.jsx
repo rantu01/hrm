@@ -387,7 +387,7 @@ export default function LeavePoliciesPage() {
                       <div className="flex items-start gap-2">
                         <span
                           className="mt-1 h-3 w-3 shrink-0 rounded-full border border-black/10"
-                          style={{ backgroundColor: item.leaveType?.color || '#FFEB00' }}
+                          style={{ backgroundColor: item.leaveType?.color || '#E60023' }}
                         />
                         <div className="min-w-0">
                           <div className="font-medium">{item.name}</div>

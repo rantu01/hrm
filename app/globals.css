@@ -6,7 +6,7 @@
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-brand-yellow: #FFEB00;
+    --color-brand-yellow: #E60023;
     --color-brand-red: #E60023;
     --color-brand-charcoal: #1C2925;
     --color-brand-white: #FFFFFF;
@@ -67,10 +67,11 @@
         border-color: color-mix(in srgb, var(--brand-charcoal) 20%, transparent);
     }
 }
-
+/* --brand-yellow : #ffeb00 */
 :root {
-    --brand-yellow: #FFEB00;
-    --brand-red: #E60023;
+    --brand-primary: #E60023;
+    --brand-yellow: var(--brand-primary);
+    --brand-red: var(--brand-primary);
     --brand-charcoal: #1C2925;
     --brand-white: #FFFFFF;
     --background: var(--brand-white);
@@ -79,14 +80,14 @@
     --card-foreground: var(--brand-charcoal);
     --popover: var(--brand-white);
     --popover-foreground: var(--brand-charcoal);
-    --primary: var(--brand-yellow);
-    --primary-foreground: var(--brand-charcoal);
+    --primary: var(--brand-red);
+    --primary-foreground: var(--brand-white);
     --secondary: var(--brand-charcoal);
     --secondary-foreground: var(--brand-white);
     --muted: color-mix(in srgb, var(--brand-charcoal) 8%, var(--brand-white));
     --muted-foreground: color-mix(in srgb, var(--brand-charcoal) 72%, var(--brand-white));
     --accent: var(--brand-yellow);
-    --accent-foreground: var(--brand-charcoal);
+    --accent-foreground: var(--brand-white);
     --destructive: var(--brand-red);
     --destructive-foreground: var(--brand-white);
     --border: color-mix(in srgb, var(--brand-charcoal) 18%, transparent);
@@ -100,12 +101,12 @@
     --radius: 0.625rem;
     --sidebar: var(--brand-charcoal);
     --sidebar-foreground: var(--brand-white);
-    --sidebar-primary: var(--brand-yellow);
-    --sidebar-primary-foreground: var(--brand-charcoal);
+    --sidebar-primary: var(--brand-red);
+    --sidebar-primary-foreground: var(--brand-white);
     --sidebar-accent: color-mix(in srgb, var(--brand-yellow) 16%, var(--brand-charcoal));
     --sidebar-accent-foreground: var(--brand-white);
     --sidebar-border: color-mix(in srgb, var(--brand-white) 18%, transparent);
-    --sidebar-ring: var(--brand-yellow);
+    --sidebar-ring: var(--brand-red);
     --theme-color: var(--brand-yellow);
 }
 
@@ -116,14 +117,14 @@
     --card-foreground: var(--brand-white);
     --popover: var(--brand-charcoal);
     --popover-foreground: var(--brand-white);
-    --primary: var(--brand-yellow);
-    --primary-foreground: var(--brand-charcoal);
+    --primary: var(--brand-red);
+    --primary-foreground: var(--brand-white);
     --secondary: color-mix(in srgb, var(--brand-white) 12%, var(--brand-charcoal));
     --secondary-foreground: var(--brand-white);
     --muted: color-mix(in srgb, var(--brand-white) 12%, var(--brand-charcoal));
     --muted-foreground: color-mix(in srgb, var(--brand-white) 72%, var(--brand-charcoal));
     --accent: var(--brand-yellow);
-    --accent-foreground: var(--brand-charcoal);
+    --accent-foreground: var(--brand-white);
     --destructive: var(--brand-red);
     --destructive-foreground: var(--brand-white);
     --border: color-mix(in srgb, var(--brand-white) 20%, transparent);
@@ -136,12 +137,12 @@
     --chart-5: var(--brand-yellow);
     --sidebar: var(--brand-charcoal);
     --sidebar-foreground: var(--brand-white);
-    --sidebar-primary: var(--brand-yellow);
-    --sidebar-primary-foreground: var(--brand-charcoal);
+    --sidebar-primary: var(--brand-red);
+    --sidebar-primary-foreground: var(--brand-white);
     --sidebar-accent: color-mix(in srgb, var(--brand-yellow) 16%, var(--brand-charcoal));
     --sidebar-accent-foreground: var(--brand-white);
     --sidebar-border: color-mix(in srgb, var(--brand-white) 18%, transparent);
-    --sidebar-ring: var(--brand-yellow);
+    --sidebar-ring: var(--brand-red);
 }
 
 @layer base {
@@ -236,6 +237,34 @@
 
 .theme-bg {
   background-color: var(--theme-color);
+}
+
+.bg-brand-red,
+.bg-brand-yellow,
+.bg-primary,
+.bg-destructive,
+.theme-bg {
+  color: var(--brand-white);
+}
+
+.bg-brand-red,
+.bg-brand-yellow {
+  background-color: var(--brand-primary) !important;
+}
+
+.text-brand-red,
+.text-brand-yellow {
+  color: var(--brand-primary) !important;
+}
+
+.border-brand-red,
+.border-brand-yellow {
+  border-color: var(--brand-primary) !important;
+}
+
+.ring-brand-red,
+.ring-brand-yellow {
+  --tw-ring-color: var(--brand-primary) !important;
 }
 
 .theme-border {

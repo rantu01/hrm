@@ -54,7 +54,7 @@ import {
   formatDays,
 } from '@/components/leave/leave-shared';
 
-const CHART_COLORS = ['#FFEB00', '#1C2925', '#E60023', '#3B82F6', '#8B5CF6', '#10B981', '#F97316'];
+const CHART_COLORS = ['#E60023', '#1C2925', '#E60023', '#3B82F6', '#8B5CF6', '#10B981', '#F97316'];
 
 function initials(name) {
   return String(name || '?')
@@ -335,7 +335,7 @@ export default function LeaveDashboardPage() {
                         formatter={(value, name) => [`${formatDays(value)} day(s)`, name]}
                       />
                       <Bar dataKey="approved" name="Approved" fill="#10B981" radius={[3, 3, 0, 0]} />
-                      <Bar dataKey="pending" name="Pending" fill="#FFEB00" radius={[3, 3, 0, 0]} />
+                      <Bar dataKey="pending" name="Pending" fill="#E60023" radius={[3, 3, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -380,7 +380,7 @@ export default function LeaveDashboardPage() {
                         <span className="flex min-w-0 items-center gap-1.5">
                           <span
                             className="h-2.5 w-2.5 shrink-0 rounded-full"
-                            style={{ backgroundColor: entry.color || '#FFEB00' }}
+                            style={{ backgroundColor: entry.color || '#E60023' }}
                           />
                           <span className="truncate">{entry.name}</span>
                         </span>

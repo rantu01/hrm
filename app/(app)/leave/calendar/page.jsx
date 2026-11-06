@@ -461,7 +461,7 @@ export default function LeaveCalendarPage() {
                             >
                               <span
                                 className="h-1.5 w-1.5 shrink-0 rounded-full"
-                                style={{ backgroundColor: leave.leaveType?.color || '#FFEB00' }}
+                                style={{ backgroundColor: leave.leaveType?.color || '#E60023' }}
                               />
                               <span className="truncate">
                                 {leave.employee?.name?.split(' ')[0] || 'Employee'}
