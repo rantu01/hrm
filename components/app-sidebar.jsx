@@ -629,8 +629,10 @@ const mainNavItems = [
         title: 'Meetings',
         icon: Calendar,
         children: [
-            { title: 'Meeting Types', href: '/meetings/types' },
             { title: 'Meetings', href: '/meetings/list' },
+            { title: 'Action Items', href: '/meetings/action-items' },
+            { title: 'Meeting Types', href: '/meetings/types' },
+            { title: 'Meeting Rooms', href: '/meetings/rooms' },
         ],
     },
     { title: 'Calendar', href: '/calendar', icon: Calendar },

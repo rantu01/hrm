@@ -194,7 +194,14 @@ export function MasterDataPage({
     // also copy any field keys not present in defaultForm
     for (const field of fields) {
       if (item[field.name] !== undefined && item[field.name] !== null) {
-        next[field.name] = field.type === 'select' && field.optionsEndpoint ? String(item[field.name]) : item[field.name];
+        const raw = item[field.name];
+        let value = raw;
+        if (field.type === 'select' && field.optionsEndpoint) {
+          value = String(raw?._id || raw?.id || raw);
+        } else if (field.type === 'textarea' && Array.isArray(raw)) {
+          value = raw.join(', ');
+        }
+        next[field.name] = value;
       }
     }
     setEditing(item);
