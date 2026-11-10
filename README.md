@@ -114,6 +114,22 @@ npm start          # Start production server
 | DELETE | `/api/employees/:id` | Delete employee |
 | GET | `/api/dashboard` | Dashboard stats |
 
+## Media Storage (Cloudinary)
+
+All uploads (media library, avatars, documents, resumes, attachments) are handled by **Cloudinary** via the server-side SDK.
+
+- Uploads: `POST /api/media/batch` → Cloudinary → MongoDB `MediaFile` metadata
+- Downloads: `GET /api/media/[id]/download` → Cloudinary delivery URL proxy
+- Deletes: `DELETE /api/media/[id]` → Cloudinary destroy + DB record removal
+
+Setup requires these env vars (see [CLOUDINARY_SETUP.md](./CLOUDINARY_SETUP.md)):
+
+```env
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+```
+
 ## Design System
 
 The design replicates the original project's pixel-perfect frontend:

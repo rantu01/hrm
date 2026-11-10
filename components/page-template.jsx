@@ -1,5 +1,6 @@
 'use client';
 
+import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function PageTemplate({ title, description, actions, children, noPadding = false, breadcrumbs }) {
@@ -23,7 +24,7 @@ export function PageTemplate({ title, description, actions, children, noPadding 
                                 <button
                                     key={index}
                                     onClick={action.onClick}
-                                    disabled={action.disabled}
+                                    disabled={action.disabled || action.loading}
                                     className={cn(
                                         'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors',
                                         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
@@ -39,7 +40,7 @@ export function PageTemplate({ title, description, actions, children, noPadding 
                                         action.className || ''
                                     )}
                                 >
-                                    {hasIcon && action.icon}
+                                    {action.loading ? <Loader2 className="h-4 w-4 animate-spin" /> : hasIcon ? action.icon : null}
                                     {hasLabel && <span className="hidden md:inline ml-1.5">{action.label}</span>}
                                 </button>
                             );
