@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronsUpDown, User, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -8,8 +8,27 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './app-sidebar';
 
 export function NavUser({ user }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [fetchedUser, setFetchedUser] = useState(null);
 
-    const currentUser = user || {
+    useEffect(() => {
+        if (user) return;
+        let cancelled = false;
+        (async () => {
+            try {
+                const res = await fetch('/api/profile', { credentials: 'include' });
+                if (!res.ok) return;
+                const json = await res.json();
+                if (!cancelled) setFetchedUser(json.user || null);
+            } catch {
+                // ignore
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+    }, [user]);
+
+    const currentUser = user || fetchedUser || {
         name: 'User',
         email: 'user@example.com',
     };

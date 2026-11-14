@@ -651,6 +651,8 @@ const mainNavItems = [
         children: [
             { title: 'Contract Types', href: '/contracts/types' },
             { title: 'Employee Contracts', href: '/contracts/employee-contracts' },
+            { title: 'Contract Templates', href: '/contracts/templates' },
+            { title: 'Contract Renewals', href: '/contracts/renewals' },
         ],
     },
     { title: 'Settings', href: '/settings', icon: Settings },

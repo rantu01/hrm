@@ -3,6 +3,7 @@ import { AppShell } from '@/components/app-shell';
 import { AppSidebar } from '@/components/app-sidebar';
 import { AppContent } from '@/components/app-content';
 import { AppSidebarHeader } from '@/components/app-sidebar-header';
+import SessionGuard from '@/components/session-guard';
 
 export const metadata = {
   title: 'Dashboard - LAMHA Tech',
@@ -11,6 +12,7 @@ export const metadata = {
 export default function AppLayout({ children }) {
   return (
     <AppShell variant="sidebar">
+      <SessionGuard />
       <Suspense fallback={null}>
         <AppSidebar />
       </Suspense>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { X } from 'lucide-react';
 import { PageTemplate } from '@/components/page-template';
 import {
   Table,
@@ -693,22 +694,59 @@ export default function HrCrudPage({
       </div>
 
       {viewConfig && viewing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
-          <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6 shadow-lg">
-            <h2 className="text-lg font-semibold">
-              {viewConfig.title || `${title} Details`}
-            </h2>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-background shadow-2xl">
+            <div className="relative border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
+              <button
+                type="button"
+                onClick={() => setViewing(null)}
+                className="absolute right-4 top-4 rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="flex items-center gap-4">
+                {viewing.avatar ? (
+                  <img
+                    src={viewing.avatar}
+                    alt=""
+                    className="h-16 w-16 rounded-full border-4 border-background object-cover shadow-md"
+                  />
+                ) : (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-background bg-muted text-lg font-semibold shadow-md">
+                    {String(viewing.name || title || 'R')
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')
+                      .toUpperCase()
+                      .slice(0, 2)}
+                  </div>
+                )}
+                <div>
+                  <h2 className="text-xl font-semibold">
+                    {viewConfig.title || `${title} Details`}
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    {viewing.name || viewing.title || viewing.contract_number || viewing.renewal_number || ''}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 p-6 sm:grid-cols-2">
               {(viewConfig.fields || []).map((vf) => (
-                <div key={vf.key} className="flex flex-col gap-1">
-                  <span className="text-sm font-medium text-muted-foreground">
+                <div
+                  key={vf.key}
+                  className="flex flex-col gap-1 rounded-lg border bg-muted/30 p-3"
+                >
+                  <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                     {vf.label}
                   </span>
-                  <span className="text-sm">{renderViewValue(vf, viewing)}</span>
+                  <span className="text-sm font-medium break-words">
+                    {renderViewValue(vf, viewing)}
+                  </span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex items-center justify-end">
+            <div className="flex items-center justify-end border-t p-4">
               <Button variant="outline" onClick={() => setViewing(null)}>
                 Close
               </Button>

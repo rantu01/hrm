@@ -5,9 +5,13 @@ import HrCrudPage from '@/components/hr/hr-crud-page';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { User, Mail, Shield, Calendar, X } from 'lucide-react';
 
 export default function StaffUsersPage() {
   const [resetRow, setResetRow] = useState(null);
+  const [viewingUser, setViewingUser] = useState(null);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [resetSaving, setResetSaving] = useState(false);
@@ -81,19 +85,12 @@ export default function StaffUsersPage() {
             optionValue: 'name',
           },
         ]}
-        viewConfig={{
-          title: 'User Details',
-          fields: [
-            { key: 'avatar', label: 'Avatar' },
-            { key: 'name', label: 'Name' },
-            { key: 'email', label: 'Email' },
-            { key: 'role', label: 'Role' },
-            { key: 'type', label: 'Type' },
-            { key: 'status', label: 'Status', type: 'status' },
-            { key: 'createdAt', label: 'Joined', type: 'date' },
-          ],
-        }}
         rowActions={[
+          {
+            label: 'View',
+            variant: 'outline',
+            onClick: (row) => setViewingUser(row),
+          },
           {
             label: 'Reset Password',
             variant: 'outline',
@@ -163,6 +160,90 @@ export default function StaffUsersPage() {
           },
         ]}
       />
+
+      {viewingUser && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-lg overflow-hidden rounded-2xl bg-background shadow-2xl">
+            <div className="relative bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
+              <button
+                type="button"
+                onClick={() => setViewingUser(null)}
+                className="absolute right-4 top-4 rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="flex items-center gap-4">
+                <Avatar className="h-20 w-20 border-4 border-background shadow-md">
+                  <AvatarImage src={viewingUser.avatar || ''} alt={viewingUser.name} />
+                  <AvatarFallback className="text-xl font-semibold">
+                    {String(viewingUser.name || 'U')
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')
+                      .toUpperCase()
+                      .slice(0, 2)}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h2 className="text-xl font-semibold">{viewingUser.name || '—'}</h2>
+                  <p className="text-sm text-muted-foreground">{viewingUser.email || '—'}</p>
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <Badge variant={viewingUser.status === 'active' ? 'success' : viewingUser.status === 'suspended' ? 'destructive' : 'secondary'}>
+                      {viewingUser.status || '—'}
+                    </Badge>
+                    {viewingUser.role && <Badge variant="outline">{viewingUser.role}</Badge>}
+                    {viewingUser.type && <Badge variant="outline">{viewingUser.type}</Badge>}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2">
+              <div className="flex items-center gap-3 rounded-lg border p-3">
+                <User className="h-4 w-4 text-muted-foreground" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Name</div>
+                  <div className="text-sm font-medium">{viewingUser.name || '—'}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-lg border p-3">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Email</div>
+                  <div className="text-sm font-medium break-all">{viewingUser.email || '—'}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-lg border p-3">
+                <Shield className="h-4 w-4 text-muted-foreground" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Role</div>
+                  <div className="text-sm font-medium">{viewingUser.role || '—'}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-lg border p-3">
+                <Shield className="h-4 w-4 text-muted-foreground" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Type</div>
+                  <div className="text-sm font-medium">{viewingUser.type || '—'}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 rounded-lg border p-3 sm:col-span-2">
+                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <div>
+                  <div className="text-xs text-muted-foreground">Joined</div>
+                  <div className="text-sm font-medium">
+                    {viewingUser.createdAt ? new Date(viewingUser.createdAt).toLocaleDateString() : '—'}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-end border-t p-4">
+              <Button variant="outline" onClick={() => setViewingUser(null)}>
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {resetRow && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-charcoal/50 p-4">
